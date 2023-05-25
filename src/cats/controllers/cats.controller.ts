@@ -1,18 +1,12 @@
 import { HttpExceptionFilter } from 'src/common/exceptions/http-exception.filter';
-import { CatsService } from '../services/cats.service';
 import {
   Controller,
-  Delete,
   Get,
-  Param,
-  ParseIntPipe,
-  Patch,
   Post,
   UseFilters,
   UseInterceptors,
   Body,
   UseGuards,
-  Req,
   UploadedFile,
 } from '@nestjs/common';
 import { SuccessInterceptor } from 'src/common/interceptors/success.interceptor';
@@ -23,9 +17,10 @@ import { AuthService } from 'src/auth/auth.service';
 import { LoginrequestDto } from 'src/auth/dto/login.request.dto';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { CurrentUser } from 'src/common/decorators/user.decorator';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/common/utils/multer.options';
 import { Cat } from '../cats.schema';
+import { CatsService } from '../services/cats.service';
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)
@@ -74,5 +69,11 @@ export class CatsController {
   ) {
     console.log(file, 'file');
     return this.CatsService.uploadImg(cat, file);
+  }
+
+  @ApiOperation({ summary: '모든 고양이 가져오기' })
+  @Get('all')
+  getAllCat() {
+    return this.CatsService.getAllCat();
   }
 }

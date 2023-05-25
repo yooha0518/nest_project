@@ -31,5 +31,13 @@ export class CatsRepository {
     const cat = await this.catModel.findById(id);
 
     cat.imgUrl = `http://localhost:8000/media/${fileName}`;
+
+    return cat.imgUrl;
+  }
+
+  async findAll() {
+    const catlist = await this.catModel.find({});
+
+    return catlist;
   }
 }
