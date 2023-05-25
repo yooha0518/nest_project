@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './cats/cats.module';
+import { UserModule } from './user/user.module';
 import { LoggerMiddleware } from './common/middlewares/logger/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
-    CatsModule,
+    UserModule,
     AuthModule,
   ],
   controllers: [AppController],

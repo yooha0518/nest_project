@@ -1,8 +1,8 @@
 import { ApiProperty, PickType } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
-import { Cat } from 'src/cats/cats.schema';
+import { User } from 'src/user/user.schema';
 
-export class ReadOnlyCatRequestDto extends PickType(Cat, [
+export class ReadOnlyUserRequestDto extends PickType(User, [
   'email',
   'name',
 ] as const) {

@@ -1,4 +1,4 @@
-import { CatsRepository } from './../cats/cats.repository';
+import { UserRepository } from './../user/user.repository';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { LoginrequestDto } from './dto/login.request.dto';
 import * as bcrypt from 'bcrypt';
@@ -7,7 +7,7 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly CatsRepository: CatsRepository,
+    private readonly UserRepository: UserRepository,
     private jwtService: JwtService,
   ) {}
 
@@ -16,7 +16,7 @@ export class AuthService {
 
     console.log('AuthService 실행');
 
-    const cat = await this.CatsRepository.findCatByEmail(email);
+    const cat = await this.UserRepository.findUserByEmail(email);
 
     if (!cat) {
       throw new UnauthorizedException('이메일과 비밀번호를 확인해주세요.');

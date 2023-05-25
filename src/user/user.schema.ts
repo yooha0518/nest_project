@@ -8,7 +8,7 @@ const options: SchemaOptions = {
 };
 
 @Schema(options)
-export class Cat extends Document {
+export class User extends Document {
   @ApiProperty({
     example: 'amamov@kakao.com',
     description: 'email',
@@ -56,9 +56,9 @@ export class Cat extends Document {
   readonly readOnlyData: { id: string; email: string; name: string };
 }
 
-export const CatSchema = SchemaFactory.createForClass(Cat);
+export const UserSchema = SchemaFactory.createForClass(User);
 
-CatSchema.virtual('readOnlyData').get(function (this: Cat) {
+UserSchema.virtual('readOnlyData').get(function (this: User) {
   return {
     id: this.id,
     email: this.email,
